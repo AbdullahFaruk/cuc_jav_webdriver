@@ -1,0 +1,188 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 8452933987,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.openBrowser()"
+            }
+          }
+        ],
+        "line": 6,
+        "name": "Sign up a new user",
+        "description": "",
+        "id": "as-a-user;sign-up-a-new-user",
+        "after": [
+          {
+            "result": {
+              "duration": 715218884,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 742476981,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "the user is on landing page",
+            "match": {
+              "location": "StartingSteps.the_user_is_on_landing_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 556616030,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "she chooses to sign up",
+            "match": {
+              "location": "LandingPageSteps.she_chooses_to_sign_up()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 91931646,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "she provides the first name as \"Sukesh\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Sukesh",
+                  "offset": 32
+                }
+              ],
+              "location": "SignUpPageSteps.she_provides_the_first_name_as(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 98363710,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "she provides the last name as \"Kumar\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Kumar",
+                  "offset": 31
+                }
+              ],
+              "location": "SignUpPageSteps.she_provides_the_last_name_as(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 956662156,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "she provides the email as \"validemail@March160863.com\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "validemail@March160863.com",
+                  "offset": 27
+                }
+              ],
+              "location": "SignUpPageSteps.she_provides_the_email_as(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 125906599,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "she provides the password as \"password\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "password",
+                  "offset": 30
+                }
+              ],
+              "location": "SignUpPageSteps.she_provides_the_password_as_password(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 115888765,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "she provides the confirm password again as \"password\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "password",
+                  "offset": 44
+                }
+              ],
+              "location": "SignUpPageSteps.she_provides_the_confirm_password_again_as_password(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1607411851,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "she signs-up",
+            "match": {
+              "location": "SignUpPageSteps.she_signs_up()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 39364689,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "she should be logged in to the application",
+            "match": {
+              "location": "HomePageSteps.she_should_be_logged_in_to_the_application()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "As a user",
+    "description": "       I want to be able to add new clients in the system\r\n       So that I can add accounting data for that client",
+    "id": "as-a-user",
+    "keyword": "Feature",
+    "uri": "features/newUsers.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@newuser"
+      }
+    ]
+  }
+]

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: Scenario: Sign up a new user
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.878 sec - in Scenario: Sign up a new user
