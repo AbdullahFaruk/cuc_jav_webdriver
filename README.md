@@ -2,13 +2,13 @@
 
 This template implements the [Page Object](http://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) design pattern.
 
-To get started, create a copy of this project (e.g. download the zip) in a directory on your machine. The root directory should be a project name of your choosing.
+To get started, create a copy of this project in a directory on your machine (e.g. download the zip). The root directory should be a project name of your choosing.
 
 ##Modify pom.xml##
 
 Modify the pom.xml file.  Use [this](https://maven.apache.org/pom.html) as a guide.
 
-At a minimum you should supply new values for **groupId** (unique within your organization) and **artifactId** (generally your project name). Changes must be reflected in the folder names of your project. For example, your project won't likely be called cuc_jav_webdriver; neither should your project root folder.
+At a minimum you should supply new values for **groupId** (unique within your organization) and **artifactId** (generally your project name). Changes must be reflected in the folder names of your project. For example, your project won't likely be called cuc_jav_webdriver; neither should your project's root folder.
 
 It is a good practice to match your groupId to your package (high level directory) structure.
 
@@ -22,7 +22,7 @@ This will update the dependency versions in the parent POM.
 
 **Important** 
 
-As of this writing, Maven has a bug with package xml-apis. Back in 2002 it was mistakenly updated to version 2.0.2.  The latest version as of this writting is 1.4.01 which you can check [here](http://mvnrepository.com/artifact/xml-apis/xml-apis).
+As of this writing, Maven has a bug with package xml-apis. Back in 2002 it was mistakenly updated to version 2.0.2.  The latest version as of this writting is 1.4.01 which you can check [here](http://mvnrepository.com/artifact/xml-apis/xml-apis). After running **use-latest-versions** Maven updates **xml-apis** to version 2.0.2.
 Open pom.xml and search for xml-apis
 
 If it looks like this:
@@ -74,7 +74,7 @@ Note. Depending on how you have setup Eclipse, you may need to right-click on th
 
 ##Explore##
 
-Read this [eBook](https://www.gitbook.com/book/sukesh15/cucumber-jvm-test-framework-/details) to learn more about this framework.
+Read this [eBook](https://www.gitbook.com/book/sukesh15/cucumber-jvm-test-framework-/details) to learn more about cucumber-jvm frameworks.
 
 
 
