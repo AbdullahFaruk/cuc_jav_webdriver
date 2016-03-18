@@ -1,4 +1,4 @@
-package steps;
+package runsupport;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;

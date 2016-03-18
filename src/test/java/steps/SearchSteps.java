@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.api.PendingException;
 import pages.GoogleSearchPage;
+import runsupport.DriverFactory;
 import cucumber.api.java.en.*;  // Given, When, Then
 
 public class SearchSteps extends DriverFactory{

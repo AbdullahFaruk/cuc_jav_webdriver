@@ -1,4 +1,4 @@
-package steps;
+package runsupport;
 
 import org.junit.runner.RunWith;
 
@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features = "classpath:features",
 		plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber.json"},
-		glue = { "classpath:steps" },
+		glue = { "classpath:steps", "classpath:runsupport" },
 		tags = {"@search"}
 		)
 public class RunCukesTest{

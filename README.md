@@ -27,19 +27,19 @@ Open pom.xml and search for xml-apis
 
 If it looks like this:
 
-<dependency>
-	<groupId>xml-apis</groupId>
-	<artifactId>xml-apis</artifactId>
-	<version>2.0.2</version>
-</dependency>
+    <dependency>
+	    <groupId>xml-apis</groupId>
+	    <artifactId>xml-apis</artifactId>
+	    <version>2.0.2</version>
+    </dependency>
 
 Then change it to this (or the latest 1.x.x version):
 
-<dependency>
-	<groupId>xml-apis</groupId>
-	<artifactId>xml-apis</artifactId>
-	<version>1.4.01</version>
-</dependency>
+    <dependency>
+      	<groupId>xml-apis</groupId>
+    	<artifactId>xml-apis</artifactId>
+    	<version>1.4.01</version>
+    </dependency>
 
 This has been broken for quite a while (since 2002).  I am surprised that nobody has fixed it. 2.0.2 is ancient.
 
@@ -57,8 +57,8 @@ IntelliJ is an alternative to Eclipse.
 
 This project contains a Hello World example that searches Google.
 
-To execute the test, using Eclipse, navigate to src/test/java/steps then right-click on RunCukesTest.java.
-In the menu click on Run As then select JUnit Test.
+To execute the test, using Eclipse, navigate to src/test/java/runsupport then right-click on RunCukesTest.java.
+In the menu click on **Run As** then select **JUnit Test**.
 
 The last two steps are pending and are left as an exercise.
 
