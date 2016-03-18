@@ -1,0 +1,56 @@
+[
+  {
+    "source": "^I am on the main Google search webpage$",
+    "steps": [
+      {
+        "name": "I am on the main Google search webpage",
+        "aggregatedDurations": {
+          "average": 1.494051539,
+          "median": 1.494051539
+        },
+        "durations": [
+          {
+            "duration": 1.494051539,
+            "location": "features/googleSearch.feature:5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "^I search for \"([^\"]*)\"$",
+    "steps": [
+      {
+        "name": "I search for \"qastuffs.blogspot.com\"",
+        "aggregatedDurations": {
+          "average": 0.354781524,
+          "median": 0.354781524
+        },
+        "durations": [
+          {
+            "duration": 0.354781524,
+            "location": "features/googleSearch.feature:6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "^I click the search button$",
+    "steps": [
+      {
+        "name": "I click the search button",
+        "aggregatedDurations": {
+          "average": 0.168673972,
+          "median": 0.168673972
+        },
+        "durations": [
+          {
+            "duration": 0.168673972,
+            "location": "features/googleSearch.feature:8"
+          }
+        ]
+      }
+    ]
+  }
+]

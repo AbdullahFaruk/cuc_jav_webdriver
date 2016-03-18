@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 8452933987,
+              "duration": 7600932597,
               "status": "passed"
             },
             "match": {
@@ -14,14 +14,14 @@
             }
           }
         ],
-        "line": 6,
-        "name": "Sign up a new user",
+        "line": 4,
+        "name": "A simple Google search scenario",
         "description": "",
-        "id": "as-a-user;sign-up-a-new-user",
+        "id": "a-simple-google-search;a-simple-google-search-scenario",
         "after": [
           {
             "result": {
-              "duration": 715218884,
+              "duration": 728006946,
               "status": "passed"
             },
             "match": {
@@ -34,154 +34,82 @@
         "steps": [
           {
             "result": {
-              "duration": 742476981,
+              "duration": 1501756161,
               "status": "passed"
             },
-            "line": 7,
-            "name": "the user is on landing page",
+            "line": 5,
+            "name": "I am on the main Google search webpage",
             "match": {
-              "location": "StartingSteps.the_user_is_on_landing_page()"
+              "location": "SearchSteps.i_am_on_the_main_Google_search_webpage()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 556616030,
+              "duration": 346817550,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I search for \"qastuffs.blogspot.com\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "qastuffs.blogspot.com",
+                  "offset": 14
+                }
+              ],
+              "location": "SearchSteps.i_search_for(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 172016403,
               "status": "passed"
             },
             "line": 8,
-            "name": "she chooses to sign up",
+            "name": "I click the search button",
             "match": {
-              "location": "LandingPageSteps.she_chooses_to_sign_up()"
+              "location": "SearchSteps.i_click_the_search_button()"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 91931646,
-              "status": "passed"
+              "duration": 1556519,
+              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat steps.SearchSteps.i_click_the_first_result(SearchSteps.java:29)\r\n\tat ✽.And I click the first result(features/googleSearch.feature:9)\r\n",
+              "status": "pending"
             },
             "line": 9,
-            "name": "she provides the first name as \"Sukesh\"",
+            "name": "I click the first result",
             "match": {
-              "arguments": [
-                {
-                  "val": "Sukesh",
-                  "offset": 32
-                }
-              ],
-              "location": "SignUpPageSteps.she_provides_the_first_name_as(String)"
+              "location": "SearchSteps.i_click_the_first_result()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 98363710,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 10,
-            "name": "she provides the last name as \"Kumar\"",
+            "name": "I should land on the qastuffs blog webpage",
             "match": {
-              "arguments": [
-                {
-                  "val": "Kumar",
-                  "offset": 31
-                }
-              ],
-              "location": "SignUpPageSteps.she_provides_the_last_name_as(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 956662156,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "she provides the email as \"validemail@March160863.com\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "validemail@March160863.com",
-                  "offset": 27
-                }
-              ],
-              "location": "SignUpPageSteps.she_provides_the_email_as(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 125906599,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "she provides the password as \"password\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "password",
-                  "offset": 30
-                }
-              ],
-              "location": "SignUpPageSteps.she_provides_the_password_as_password(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 115888765,
-              "status": "passed"
-            },
-            "line": 13,
-            "name": "she provides the confirm password again as \"password\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "password",
-                  "offset": 44
-                }
-              ],
-              "location": "SignUpPageSteps.she_provides_the_confirm_password_again_as_password(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 1607411851,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "she signs-up",
-            "match": {
-              "location": "SignUpPageSteps.she_signs_up()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 39364689,
-              "status": "passed"
-            },
-            "line": 15,
-            "name": "she should be logged in to the application",
-            "match": {
-              "location": "HomePageSteps.she_should_be_logged_in_to_the_application()"
+              "location": "SearchSteps.i_should_land_on_the_qastuffs_blog_webpage()"
             },
             "keyword": "Then "
           }
         ]
       }
     ],
-    "name": "As a user",
-    "description": "       I want to be able to add new clients in the system\r\n       So that I can add accounting data for that client",
-    "id": "as-a-user",
+    "name": "A simple Google search",
+    "description": "",
+    "id": "a-simple-google-search",
     "keyword": "Feature",
-    "uri": "features/newUsers.feature",
+    "uri": "features/googleSearch.feature",
     "tags": [
       {
         "line": 1,
-        "name": "@newuser"
+        "name": "@search"
       }
     ]
   }
