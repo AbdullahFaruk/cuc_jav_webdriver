@@ -14,7 +14,7 @@ It is a good practice to match your groupId to your package (high level director
 
 ##Use Latest versions##
 
-I recommend updating the dependencies in pom.xml to the latest versions in Maven.  In a command prompt, cd to your project's root folder and:
+I recommend updating the dependencies in pom.xml to the latest versions in [Maven](https://maven.apache.org/install.html).  In a command prompt, cd to your project's root folder and:
 
     mvn versions:use-latest-versions -DallowSnapshots=true -DexcludeReactor=false
 
