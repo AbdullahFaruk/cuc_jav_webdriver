@@ -20,31 +20,6 @@ I recommend updating the dependencies in pom.xml to the latest versions in Maven
 
 This will update the dependency versions in the parent POM.
 
-**Important** 
-
-As of this writing, Maven has a bug with package xml-apis. Back in 2002 it was mistakenly updated to version 2.0.2.  The latest version as of this writting is 1.4.01 which you can check [here](http://mvnrepository.com/artifact/xml-apis/xml-apis). After running **use-latest-versions** Maven updates **xml-apis** to version 2.0.2.
-Open pom.xml and search for xml-apis
-
-If it looks like this:
-
-    <dependency>
-	    <groupId>xml-apis</groupId>
-	    <artifactId>xml-apis</artifactId>
-	    <version>2.0.2</version>
-    </dependency>
-
-Then change it to this (or the latest 1.x.x version):
-
-    <dependency>
-      	<groupId>xml-apis</groupId>
-    	<artifactId>xml-apis</artifactId>
-    	<version>1.4.01</version>
-    </dependency>
-
-This has been broken for quite a while (since 2002).  I am surprised that nobody has fixed it. 2.0.2 is ancient.
-
-If you don't fix this in your pom.xml then Cucumber will not be able to follow your @CucumberOptions(glue) path and your steps will not be found.
-
 ##Eclipse##
 
 If using Eclipse, make sure that the Maven [M2e](http://www.eclipse.org/m2e/) plugin is installed.  Then "Import > Maven > Existing project into workspace..." and select your pom.xml.
