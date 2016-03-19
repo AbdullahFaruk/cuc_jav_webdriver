@@ -39,13 +39,19 @@ The last two Gherkin steps are pending and are left as an exercise.
 
 ##Advanced Cucumber Reporting##
 
-This template includes support for an advanced cucumber reporting solution described by [Nickolay Kolesnik](http://mkolisnyk.blogspot.com/2015/05/cucumber-jvm-advanced-reporting.html).  To use it simply repeat Hello World but this time navigate to **src/test/java/runsupport** then right-click on **RunExtendedReportingCukeTests.java** > **Run As** > **JUnit Test**.
+This template includes support for an advanced cucumber reporting solution described by [Nickolay Kolesnik](http://mkolisnyk.blogspot.com/2015/05/cucumber-jvm-advanced-reporting.html).   To use it simply repeat Hello World but this time navigate to **src/test/java/runsupport** then right-click on **RunExtendedReportingCukeTests.java** > **Run As** > **JUnit Test**.
 
 The **Overview Chart** can be found in file **target/cucumber-results-feature-overview.html**.
 
 The **Usage Report** can be found in file **target/cucumber-usage-report.html**.
 
 Note. Depending on how you have setup Eclipse, you may need to right-click on the **target** folder and click **source** > **format** to see the html files.
+
+Nickolay has extended his framework as described [here](http://mkolisnyk.blogspot.com/2015/06/cucumber-jvm-advanced-reporting-2.html) and [here](http://mkolisnyk.blogspot.com/2015/10/cucumber-jvm-advanced-reporting-3.html). The downloaded jar contains support for all this but these advanced features are left as an exercise for the reader.
+
+##Wait for Javascript##
+
+Helper class **HelpWithJavascriptLibraries** contains sophisticated methods that wait for page loads to complete.  The **jquery**, **angular**, and **prototype** frameworks are supported.  Jquery support includes wait for loading spinner code based on classname=spinner.  However, you will need to analyze how your loading spinner was implemented and make corresponding adjustments to the code. E.g. development may have used id=spinner.
 
 ##Explore##
 
