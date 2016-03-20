@@ -1,3 +1,4 @@
+@search
 Feature: A simple Google search
 
 Scenario: A simple Google search scenario
