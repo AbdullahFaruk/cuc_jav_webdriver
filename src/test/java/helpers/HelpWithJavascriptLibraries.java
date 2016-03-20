@@ -1,10 +1,13 @@
 package helpers;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import pages.GoComicsPage;
 
 /*
  * Manually inspect page source on your webpage as soon as it is loaded and search for 
@@ -13,13 +16,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * class to wait for that page to finish loading before continuing with the test. 
  */
 public class HelpWithJavascriptLibraries {
-	
 	/*
 	 *  waitForJSandJQueryToLoad assumes that if a loading spinner was implemented that it
 	 *  is identifiedby class=spinner.  While a good guess, check that your developers identified 
 	 *  the spinner this way.  E.g. they could have used id=spinner instead. Modify this code as 
 	 *  appropriate. This code handles the case where a loading spinner hasn't been implemented at all. 
 	 */
+	
+	protected static Logger log;
+	
+	public HelpWithJavascriptLibraries() {
+		log = Logger.getLogger(HelpWithJavascriptLibraries.class);
+	}
 	
 	public boolean waitForJSandJQueryToLoad(WebDriver driver) {
 		return waitForJSandJQueryToLoad(driver, 30L);  // Default to 30 seconds
@@ -42,7 +50,11 @@ public class HelpWithJavascriptLibraries {
 	        	isAjaxFinished = true;
 	        }
 	        try { // Check your page, not everyone uses class=spinner
-	        	isLoaderSpinning = driver.findElement(By.className("spinner")).isDisplayed();
+//	        	isLoaderSpinning = driver.findElement(By.className("spinner")).isDisplayed(); // This is the default
+	        	// Next was modified for GoComics
+	        	isLoaderSpinning = driver.findElement(By.cssSelector("#progress_throbber > ul > li:nth-child(1) > img[alt='spinner']")).isDisplayed();
+	        	if (isLoaderSpinning)
+	        		log.info("jquery loader is spinning");
 	        } catch (Exception f) {
 	        	// no loading spinner found
 	        	isLoaderSpinning = false;
@@ -50,7 +62,7 @@ public class HelpWithJavascriptLibraries {
 	        isPageLoadComplete = ((JavascriptExecutor)driver).executeScript("return document.readyState;")
 	    	        .toString().equals("complete");
 	        if (!(isAjaxFinished & !(isLoaderSpinning) & isPageLoadComplete))
-	        	System.out.println(isAjaxFinished + ", " + !(isLoaderSpinning) +", " + isPageLoadComplete);
+	        	log.info(isAjaxFinished + ", " + !(isLoaderSpinning) +", " + isPageLoadComplete);
 	        
 	        return isAjaxFinished & !(isLoaderSpinning) & isPageLoadComplete;
 	      }
@@ -76,7 +88,7 @@ public class HelpWithJavascriptLibraries {
 	        }
 	        catch (Exception e) {
 	        	// Prototype  not found
-	        	System.out.println("Not found: " + "return Ajax.activeRequestCount == 0;");
+	        	log.info("Not found: " + "return Ajax.activeRequestCount == 0;");
 	        	return true;
 	        }
 	      }
@@ -113,7 +125,7 @@ public class HelpWithJavascriptLibraries {
 	        }
 	        catch (Exception e) {
 	        	// Angular not found
-	        	System.out.println("Not found: " + "return angular.element(document.body).injector().get(\'$http\').pendingRequests.length == 0;");
+	        	log.info("Not found: " + "return angular.element(document.body).injector().get(\'$http\').pendingRequests.length == 0;");
 	        	return true;
 	        }
 	      }
