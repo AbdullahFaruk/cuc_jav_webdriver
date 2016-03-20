@@ -53,9 +53,9 @@ Nickolay has extended his framework as described [here](http://mkolisnyk.blogspo
 
 ##Wait for Page Load##
 
-Helper class **HelpWithJavascriptLibraries** contains sophisticated methods that wait for page loads to complete.  The **jquery**, **angular**, and **prototype** frameworks are supported.  Jquery support includes wait for loading spinner code based on classname=spinner.  However, you will need to analyze how your loading spinner was implemented and make corresponding adjustments to the code. E.g. development may have used id=spinner.
+Helper class **HelpWithJavascriptLibraries** contains sophisticated methods that wait for page loads to complete.  The **jquery**, **angular**, and **prototype** frameworks are supported.  Jquery support includes wait for loading spinner which has been customized for the tag @hobbes demo.  You will need to analyze how your loading spinner was implemented and make corresponding adjustments to the code. E.g. development may have used By.className=("spinner").
 
-##Log4j"
+##Log4j##
 
 Log4j is configured to send INFO and above to the console and ERROR and above to the log file. Both the **log4j.properties** and the **messages.log** files are in the project's root folder.
 
