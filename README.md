@@ -37,7 +37,7 @@ In the menu click on **Run As** then select **JUnit Test**. You may need to add 
 
 The last two Gherkin steps are pending and are left as an exercise.
 
-There is a second demo used to demonstrate the wait for page load support (see below) and the elapsed time services.  To run it replace the **@search** tag in **src/test/java/runsupportRunCukesTest.java** with **@hobbes** then follow the above Hello World directions.  
+There is a second demo used to demonstrate the wait for page load support (see below) and the elapsed time services.  To run it replace the **@search** tag in **src/test/java/runsupport/RunCukesTest.java** with **@hobbes** then right-click on **runsupport/RunCukesTest.java** > **Run As** > **JUnit Test**.  
 
 ##Advanced Cucumber Reporting##
 
