@@ -33,7 +33,7 @@ M2e will automatically manage your dependencies and download them as required.
 This project contains a Hello World example that searches Google.
 
 To execute the test, using Eclipse, navigate to **src/test/java/runsupport** then right-click on **RunCukesTest.java**.
-In the menu click on **Run As** then select **JUnit Test**.
+In the menu click on **Run As** then select **JUnit Test**. You may need to add the log4j.properties to the Eclipse classpath before running.  Instructions are in the Log4j section below.
 
 The last two Gherkin steps are pending and are left as an exercise.
 
@@ -58,6 +58,8 @@ Helper class **HelpWithJavascriptLibraries** contains sophisticated methods that
 ##Log4j##
 
 Log4j is configured to send INFO and above to the console and ERROR and above to the log file. Both the **log4j.properties** and the **messages.log** files are in the project's root folder.
+
+**Important**.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run  
 
 ##Explore##
 
