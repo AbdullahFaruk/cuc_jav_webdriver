@@ -1,13 +1,16 @@
 package helpers;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pages.GoComicsPage;
+import runsupport.DriverFactory;
 
 /*
  * Manually inspect page source on your webpage as soon as it is loaded and search for 
@@ -37,8 +40,15 @@ public class HelpWithJavascriptLibraries {
 	    
 	    WebDriverWait wait = new WebDriverWait(driver, waitTimeInSeconds, 2000L);
 
+	    /*
+	     * If you are curious about what follows see:
+	     * 	http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/support/ui/ExpectedCondition.html
+	     * 
+	     * We are creating an anonymous class that inherits from ExpectedCondition and then implements interface
+	     * method apply(...)
+	     */
 	    ExpectedCondition<Boolean> libraryLoad = new ExpectedCondition<Boolean>() {
-
+	      
 	      public Boolean apply(WebDriver driver) {
 	    	boolean isAjaxFinished = false;
 	    	boolean isLoaderSpinning = false;
@@ -50,14 +60,20 @@ public class HelpWithJavascriptLibraries {
 	        	isAjaxFinished = true;
 	        }
 	        try { // Check your page, not everyone uses class=spinner
+	        	// Reduce implicit wait time for spinner
+	        	driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
+	        	
 //	        	isLoaderSpinning = driver.findElement(By.className("spinner")).isDisplayed(); // This is the default
 	        	// Next was modified for GoComics
 	        	isLoaderSpinning = driver.findElement(By.cssSelector("#progress_throbber > ul > li:nth-child(1) > img[alt='spinner']")).isDisplayed();
+	        	
 	        	if (isLoaderSpinning)
 	        		log.info("jquery loader is spinning");
 	        } catch (Exception f) {
 	        	// no loading spinner found
 	        	isLoaderSpinning = false;
+	        } finally { // Restore implicit wait time to default
+	        	driver.manage().timeouts().implicitlyWait(new DriverFactory().getImplicitWait(), TimeUnit.SECONDS);
 	        }
 	        isPageLoadComplete = ((JavascriptExecutor)driver).executeScript("return document.readyState;")
 	    	        .toString().equals("complete");
@@ -66,7 +82,7 @@ public class HelpWithJavascriptLibraries {
 	        
 	        return isAjaxFinished & !(isLoaderSpinning) & isPageLoadComplete;
 	      }
-	    };
+	    }; // Terminates statement started by ExpectedCondition<Boolean> libraryLoad = ...
 
 	  return wait.until(libraryLoad); 
 	}

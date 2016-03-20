@@ -1,6 +1,5 @@
 package runsupport;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +12,7 @@ public class DriverFactory {
 
 	protected static WebDriver driver;
 	protected static Logger log;
+	protected static long implicitWaitTimeInSeconds;
 
 	public DriverFactory() {
 		log = Logger.getLogger(DriverFactory.class);
@@ -48,5 +48,13 @@ public class DriverFactory {
 	public void destroyDriver() {
 		driver.quit();
 		driver = null;
+	}
+	
+	public void setImplicitWait(long waitTime) {
+		implicitWaitTimeInSeconds = waitTime;
+	}
+	
+	public long getImplicitWait() {
+		return implicitWaitTimeInSeconds;
 	}
 }

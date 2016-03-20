@@ -28,11 +28,13 @@ public class Hooks{
      * set the selenium implicit wait.
      */
     public void openBrowser() throws MalformedURLException {
-    	driver = new DriverFactory().getDriver();
+    	DriverFactory driveFact = new DriverFactory();
+    	driver = driveFact.getDriver();
     	log.info("@Before hook will run before the actual scenario");
     	driver.manage().deleteAllCookies();
     	driver.manage().window().maximize();
-    	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    	driveFact.setImplicitWait(60); // Default value for rest of run
+    	driver.manage().timeouts().implicitlyWait(driveFact.getImplicitWait(), TimeUnit.SECONDS);
     }
 
      
