@@ -2,26 +2,30 @@ package pages;
 
 import helpers.HelpWithJavascriptLibraries;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import runsupport.Hooks;
 import util.ElapsedTime;
 
 public class GoComicsDetailPage {
 	
 	public WebDriver driver;
+	protected static Logger log;
 	
 	public GoComicsDetailPage(WebDriver driver) { // Class constructor
 		this.driver = driver;
+		log = Logger.getLogger(GoComicsDetailPage.class);
 		
 		ElapsedTime etime = new ElapsedTime();
 		etime.start();
-		new HelpWithJavascriptLibraries().waitForJSandJQueryToLoad(this.driver, 60L);
+		new HelpWithJavascriptLibraries().waitForJSandJQueryToLoad(this.driver, 90L);
 		etime.stop();
-		System.out.println("Elapsed time waiting for 'GoComicsDetail' page to load is " 
+		log.info("Elapsed time waiting for 'GoComicsDetail' page to load is " 
 				+ etime.getElapsedTimeSeconds() + " Seconds");
 		
 		PageFactory.initElements(driver, this);

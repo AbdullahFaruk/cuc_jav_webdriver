@@ -3,6 +3,7 @@ package runsupport;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -14,16 +15,21 @@ import cucumber.api.java.Before;
 
 public class Hooks{
     public WebDriver driver;
-
+    protected static Logger log;
+    
+    public Hooks() {
+    	log = Logger.getLogger(Hooks.class);
+    }
     
     @Before
     /**
      * Delete all cookies at the start of each scenario to avoid
-     * shared state between tests
+     * shared state between tests. Maximize the browser window and
+     * set the selenium implicit wait.
      */
     public void openBrowser() throws MalformedURLException {
     	driver = new DriverFactory().getDriver();
-    	System.out.println("this will run before the actual scenario");
+    	log.info("@Before hook will run before the actual scenario");
     	driver.manage().deleteAllCookies();
     	driver.manage().window().maximize();
     	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -43,14 +49,15 @@ public class Hooks{
 		            byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 		            scenario.embed(screenshot, "image/png");
 		        } catch (WebDriverException somePlatformsDontSupportScreenshots) {
-		            System.err.println(somePlatformsDontSupportScreenshots.getMessage());
+		        	log.error(somePlatformsDontSupportScreenshots.getMessage());
+//		            System.err.println(somePlatformsDontSupportScreenshots.getMessage());
 		        } catch (ClassCastException cce) {
 		            cce.printStackTrace();
 		        }
 	    	}
         } finally {
         	new DriverFactory().destroyDriver();
-        	System.out.println("This will run after the scenario is finished, even if it failed");
+        	log.info("@After hook will run after the scenario is finished, even if the scenario failed");
         }
     }
     
