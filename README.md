@@ -1,6 +1,10 @@
+##About##
+
 **cuc_jav_webdriver** is a template for a [Cucumber-jvm](https://github.com/cucumber/cucumber-jvm), JAVA, [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/) and [JUnit](http://junit.org/) project. 
 
 This template implements the [Page Object](http://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) design pattern.
+
+The purpose of this template is to provide a quick start to new software test automation projects. 
 
 To get started, create a copy of this project in a directory on your machine (e.g. download the zip). The root directory should be a project name of your choosing.
 
@@ -38,6 +42,8 @@ In the menu click on **Run As** then select **JUnit Test**. You may need to add 
 The last two Gherkin steps are pending and are left as an exercise.
 
 There is a second demo used to demonstrate the wait for page load support (see below) and the elapsed time services.  To run it replace the **@search** tag in **src/test/java/runsupport/RunCukesTest.java** with **@hobbes** then right-click on **runsupport/RunCukesTest.java** > **Run As** > **JUnit Test**.  
+
+A third demo has been added to show support for the [jayway rest-assured Java DSL](https://github.com/jayway/rest-assured/wiki). Rest-assured provides a simplified way to test [REST](http://rest.elkstein.org/2008/02/what-is-rest.html) endpoints.  To execute the rest-assured demo navigate to **src/test/java/runsupport/RunCukesTest.java**, replace the tag with @rest then right-click on **RunCukesTest.java**. In the menu click on **Run As** then select **JUnit Test**.
 
 ##Advanced Cucumber Reporting##
 
