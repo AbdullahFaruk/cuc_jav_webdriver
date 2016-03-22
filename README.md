@@ -2,7 +2,7 @@
 
 **cuc_jav_webdriver** is a template for a [Cucumber-jvm](https://github.com/cucumber/cucumber-jvm), JAVA, [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/) and [JUnit](http://junit.org/) project. 
 
-This template implements the [Page Object](http://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) design pattern.
+This template implements the [Page Object](http://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) design pattern.  This template also supports REST endpoint testing using the [rest-assured](http://www.jayway.com/2013/11/29/rest-assured-2-0-testing-your-rest-services-is-easier-than-ever/) framework. REST endpoint testing bypasses the browser UI and directly tests the server.
 
 The purpose of this template is to provide a quick start to new software test automation projects. 
 
@@ -37,7 +37,7 @@ M2e will automatically manage your dependencies and download them as required.
 This project contains a Hello World example that searches Google.
 
 To execute the test, using Eclipse, navigate to **src/test/java/runsupport** then right-click on **RunCukesTest.java**.
-In the menu click on **Run As** then select **JUnit Test**. You may need to add the log4j.properties to the Eclipse classpath before running.  Instructions are in the Log4j section below.
+In the menu click on **Run As** then select **JUnit Test**. You may need to add the log4j.properties to the Eclipse classpath before running.  Instructions are in the **Caveats** section below.
 
 The last two Gherkin steps are pending and are left as an exercise.
 
