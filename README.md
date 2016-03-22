@@ -69,14 +69,14 @@ Log4j is configured to send INFO and above to the console and ERROR and above to
 
 **Important**.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
 
-To use the **chromedriver** you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named CHROMEDRIVER which you set to the chromedriver's download location.  Lets say that you downloaded chromedriver.exe to **c:\WebDriver\chromedriver.exe**.   Then you would set system environment variable 
+To use the **chromedriver** you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named **CHROMEDRIVER** which you set to the chromedriver's download location.  Lets say that you downloaded chromedriver.exe to **c:\WebDriver\chromedriver.exe**.   Then you would set system environment variable 
 
     CHROMEDRIVER="c:\WebDriver\chromedriver.exe" 
       
 To create an environment variable:
 <ul>
-<li>On windows **System > Advanced System Settings > Environment Variables.. > **(under System variables) **New**
-<li>Linux it varies, on Ubuntu Place in file **/etc/environment**
+<li>On windows System > Advanced System Settings > Environment Variables.. > (under System variables) New
+<li>Linux it varies, on Ubuntu Place in file /etc/environment
 </ul>
 
 Edit **src/config.properties** and set:
