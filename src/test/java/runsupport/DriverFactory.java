@@ -31,8 +31,7 @@ public class DriverFactory {
 		if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"c:/SeleniumWebdrivers/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", System.getenv("CHROMEDRIVER"));
 			driver = new ChromeDriver();
 		} else {
 			log.error(propReader.propertyNotValidMsg("browser",
