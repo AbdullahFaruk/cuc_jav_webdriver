@@ -29,12 +29,18 @@ public class RestDemoSteps extends DriverFactory {
 	    
 	}
 
-	@Then("^the result is \"([^\"]*)\"$")
-	public void the_result_is(String arg1) throws Throwable {
-	    log.info("Response=" + response.print());
+	@Then("^the HTTP status code is \"(\\d+)\", object is \"([^\"]*)\", empty is \"([^\"]*)\" and validate is \"([^\"]*)\"$")
+	public void the_HTTP_status_code_is_object_is_empty_is_and_validate_is(int expectedHttpStatus, String objectOrArray, 
+			String emptyTrueOrFalse, String validateTrueOrFalse) throws Throwable {
+		
+		boolean empty = Boolean.parseBoolean(emptyTrueOrFalse);
+		boolean validate = Boolean.parseBoolean(validateTrueOrFalse);
+		
+		log.info("Response=" + response.print());
 		response.then().
-			body("object_or_array", equalTo("object")).and().
-			body("empty", is(false)).and().
-			body("validate", is(true));
+			body("object_or_array", equalTo(objectOrArray)).and().
+			body("empty", is(empty)).and().
+			body("validate", is(validate)).and().
+			statusCode(expectedHttpStatus);
 	}
 }

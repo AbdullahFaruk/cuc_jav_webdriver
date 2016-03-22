@@ -14,5 +14,5 @@ Scenario: Validate a JSON array
     """
     http://validate.jsontest.com/
     """
-    Then the result is "success"
+    Then the HTTP status code is "200", object is "object", empty is "false" and validate is "true"
     
