@@ -65,7 +65,19 @@ Helper class **HelpWithJavascriptLibraries** contains sophisticated methods that
 
 Log4j is configured to send INFO and above to the console and ERROR and above to the log file. Both the **log4j.properties** and the **messages.log** files are in the project's root folder.
 
-**Important**.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run  
+##Caveats##
+
+**Important**.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
+
+To use the **chromedriver** you have to first download it and then edit **src/test/java/runsupport/DriverFactory.java** and set the system property to point to that **chromedriver.exe**.  The following is the default that you will have to modify:
+    
+    System.setProperty("webdriver.chrome.driver",
+          "c:/SeleniumWebdrivers/chromedriver.exe");
+      
+Edit **src/config.properties** and set:
+
+    browser=chrome
+    
 
 ##Explore##
 
