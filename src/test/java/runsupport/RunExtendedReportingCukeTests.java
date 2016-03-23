@@ -8,6 +8,7 @@ import com.github.mkolisnyk.cucumber.reporting.CucumberResultsOverview;
 import com.github.mkolisnyk.cucumber.reporting.CucumberUsageReporting;
 
 @CucumberOptions(
+		monochrome = true,
 		features = "classpath:features",
 		plugin = {"pretty", 
 				  "html:target/cucumber-html-report", 
