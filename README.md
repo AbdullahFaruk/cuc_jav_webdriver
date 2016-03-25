@@ -65,6 +65,67 @@ Helper class **HelpWithJavascriptLibraries** contains sophisticated methods that
 
 Log4j is configured to send INFO and above to the console and ERROR and above to the log file. Both the **log4j.properties** and the **messages.log** files are in the project's root folder.
 
+##Overriding @CucumberOptions##
+
+The JUnit runner (RunCukesTest.java in package runsupport) has the annotation
+
+    @CucumberOptions(
+
+followed by a bunch of cucumber runtime options (e.g. which tags to execute).  The problem is that annotations are set in stone at compile time.  To change which tags to execute you need to edit the file.  This is time consuming and it confuses git with unnecessary changes.  There is a better way.
+
+In Eclipse you can use the java command-line **-Dcucumber.options** command to completely override the **@CucumberOptions** annotation.  However, the two do not directly translate so some care must be taken.  The @CucumberOptions annotation converts the specified parameters to a format that cucumber-jvm expects.  It is this internal format that you must specify in -Dcucumber.options.  Here is an example:
+
+    @RunWith(Cucumber.class)
+    @CucumberOptions(
+            monochrome = true,
+            features = "classpath:features",
+            plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber.json"},
+            glue = { "classpath:steps", "classpath:runsupport" },
+            tags = {"@search"}
+            )
+    public class RunCukesTest{
+    
+    }
+
+The command-line system property version is:
+
+    -Dcucumber.options="--tags @search --monochrome --plugin pretty:STDOUT --plugin html:target/cucumber-html-report --plugin json:target/cucumber.json --glue steps --glue runsupport classpath:features"
+
+Note the double dash characters before keywords.  Also notice that since there are two glue paths that there are two --glue clauses.  Also note that only the package name of the two -glue paths were specified.
+
+Further note that STDOUT needed to be specified on --plugin pretty:STDOUT.
+
+Finally note that the **features** keyword was dropped completely. The path specified at the end (without a keyword) tells cucumber-jvm where to find the feature files.
+
+Be warned, if you get any of this wrong then cucumber-jvm gives you cryptic error messages. 
+
+###More on tags###
+
+The tags are the things most likely to change from run to run so here are some more rules.  To execute @tag1 or @tag2
+
+    --tags @tag1,@tag2
+
+To execute @tag1 and @tag2
+
+    --tags @tag1 --tags @tag2
+
+To execute (@tag1 or @tag2) and not @tag3
+
+    --tags @tag1,@tag2 --tags ~@tag3
+
+###Running -Dcucumber.options from Eclipse###
+
+To run using **-Dcucumber.options** inside Eclipse use the Maven Build configuration type.  To get a Maven Build configuration click on **Run > Run Configurations...**. On the left pane double-click **Maven Build**. A default Maven Build configuration is created. Give it a good name and on the **Goals** line type 
+
+    clean test -Dcucumber.options(your options here)
+
+It wouldn't hurt to click on the JRE tab and make sure that the correct JDK is being used. Back on the Main tab, press **Apply**, press **Run**. Remember that **-Dcucumber.options** completely overrides the **@CucumberOptions* line in your RunCukesTest (or whatever you named it) class. Eclipse saves the new run configuration so it is easy to use it again.
+
+###To run from a command line (or say in Jenkins)###
+
+    cd <your projects root directory, the one containing your pom.xml file>
+    mvn clean test -Dcucumber.options(your options here)
+
 ##Caveats##
 
 **Important**.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
