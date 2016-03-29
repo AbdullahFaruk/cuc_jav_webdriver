@@ -129,9 +129,9 @@ It wouldn't hurt to click on the JRE tab and make sure that the correct JDK is b
 ##Caveats##
 
 <ol>
-<li>**Important**.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
+<li><b>Important</b>.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
 
-<li>To use the **chromedriver** you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named **CHROMEDRIVER** which you set to the chromedriver's download location.  Lets say that you downloaded chromedriver.exe to **c:\WebDriver\chromedriver.exe**.   Then you would set system environment variable 
+<li>To use the <b>chromedriver</b> you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named <b>CHROMEDRIVER</b> which you set to the chromedriver's download location.  Lets say that you downloaded chromedriver.exe to <b>c:\WebDriver\chromedriver.exe</b>.   Then you would set system environment variable 
 
     CHROMEDRIVER="c:\WebDriver\chromedriver.exe" 
       
@@ -141,7 +141,7 @@ To create an environment variable:
 <li>Linux it varies, on Ubuntu Place in file /etc/environment
 </ul>
 
-Edit **src/config.properties** and set:
+Edit <b>src/config.properties</b> and set:
 
     browser=chrome
     
