@@ -45,6 +45,8 @@ There is a second demo used to demonstrate the wait for page load support (see b
 
 A third demo has been added to show support for the [jayway rest-assured Java DSL](https://github.com/jayway/rest-assured/wiki). Rest-assured provides a simplified way to test [REST](http://rest.elkstein.org/2008/02/what-is-rest.html) endpoints.  To execute the rest-assured demo navigate to **src/test/java/runsupport/RunCukesTest.java**, replace the tag with @rest then right-click on **RunCukesTest.java**. In the menu click on **Run As** then select **JUnit Test**.
 
+A fourth demo was added to demonstrate how data tables defined in feature files can be converted to list, map and even custom objects that you define. Use the tag **@datatab**.
+
 ##Advanced Cucumber Reporting##
 
 This template includes support for an advanced cucumber reporting solution described by [Nickolay Kolesnik](http://mkolisnyk.blogspot.com/2015/05/cucumber-jvm-advanced-reporting.html).   To use it simply repeat Hello World but this time navigate to **src/test/java/runsupport** then right-click on **RunExtendedReportingCukeTests.java** > **Run As** > **JUnit Test**.
