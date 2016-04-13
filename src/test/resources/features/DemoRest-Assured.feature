@@ -1,6 +1,7 @@
 @rest
 Feature: Demonstrate rest-assured
 
+@api
 Scenario: Validate a JSON array
   Given I set the JSON validation string to:
     """

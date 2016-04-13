@@ -1,6 +1,8 @@
 package runsupport;
 
 import java.net.MalformedURLException;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -18,7 +20,7 @@ public class Hooks{
     protected static Logger log;
     
     public Hooks() {
-    	log = Logger.getLogger(Hooks.class);
+        log = Logger.getLogger(Hooks.class);
     }
     
     @Before
@@ -27,14 +29,16 @@ public class Hooks{
      * shared state between tests. Maximize the browser window and
      * set the selenium implicit wait.
      */
-    public void openBrowser() throws MalformedURLException {
-    	DriverFactory driveFact = new DriverFactory();
-    	driver = driveFact.getDriver();
-    	log.info("@Before hook will run before the actual scenario");
-    	driver.manage().deleteAllCookies();
-    	driver.manage().window().maximize();
-    	driveFact.setImplicitWait(60); // Default value for rest of run
-    	driver.manage().timeouts().implicitlyWait(driveFact.getImplicitWait(), TimeUnit.SECONDS);
+    public void openBrowser(Scenario scenario) throws MalformedURLException {
+        if (isWeb(scenario)) { // Only ramp up a browser if we are testing web
+            DriverFactory driveFact = new DriverFactory();
+            driver = driveFact.getDriver();
+            log.info("@Before hook will run before the actual scenario");
+            driver.manage().deleteAllCookies();
+            driver.manage().window().maximize();
+            driveFact.setImplicitWait(60); // Default value for rest of run
+            driver.manage().timeouts().implicitlyWait(driveFact.getImplicitWait(), TimeUnit.SECONDS);
+        }
     }
 
      
@@ -43,24 +47,37 @@ public class Hooks{
      * Embed a screenshot in test report if test is marked as failed
      */
     public void embedScreenshot(Scenario scenario) {
-       
-        try {
-	    	if(scenario.isFailed()) {
-		        try {
-		        	scenario.write("Current Page URL is " + driver.getCurrentUrl());
-		            byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-		            scenario.embed(screenshot, "image/png");
-		        } catch (WebDriverException somePlatformsDontSupportScreenshots) {
-		        	log.error(somePlatformsDontSupportScreenshots.getMessage());
-//		            System.err.println(somePlatformsDontSupportScreenshots.getMessage());
-		        } catch (ClassCastException cce) {
-		            cce.printStackTrace();
-		        }
-	    	}
-        } finally {
-        	new DriverFactory().destroyDriver();
-        	log.info("@After hook will run after the scenario is finished, even if the scenario failed");
+        if (isWeb(scenario)) {
+            try {
+                if(scenario.isFailed()) {
+                    try {
+                        scenario.write("Current Page URL is " + driver.getCurrentUrl());
+                        byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+                        scenario.embed(screenshot, "image/png");
+                    } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+                        log.error(somePlatformsDontSupportScreenshots.getMessage());
+            //                    System.err.println(somePlatformsDontSupportScreenshots.getMessage());
+                    } catch (ClassCastException cce) {
+                        cce.printStackTrace();
+                    }
+                }
+            } finally {
+                new DriverFactory().destroyDriver();
+                log.info("@After hook will run after the scenario is finished, even if the scenario failed");
+            }
         }
+    }
+    
+    private boolean isWeb(Scenario scenario) {
+        boolean isWeb = true;
+        List<String> scenario_tag = (List<String>) scenario.getSourceTagNames();
+        for (String aTag : scenario_tag) {
+              System.out.println(aTag);
+              if (aTag.equals("@api")) { // API tests by pass the UI
+                  isWeb = false;
+              }
+        }
+        return isWeb;
     }
     
 }

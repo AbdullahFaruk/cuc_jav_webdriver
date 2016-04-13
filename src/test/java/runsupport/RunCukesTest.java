@@ -10,9 +10,9 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		monochrome = true,
 		features = "classpath:features",
-		plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber.json"},
+		plugin = {"pretty", "html:target/cucumber-html-reports", "json:target/cucumber.json"},
 		glue = { "classpath:steps", "classpath:runsupport" },
-		tags = {"@search"}
+		tags = {"@search,@rest"}
 		)
 public class RunCukesTest{
 	
