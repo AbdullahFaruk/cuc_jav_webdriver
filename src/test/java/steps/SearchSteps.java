@@ -1,5 +1,7 @@
 package steps;
 
+import org.junit.Assert;
+
 import cucumber.api.PendingException;
 import pages.GoogleSearchPage;
 import runsupport.DriverFactory;
