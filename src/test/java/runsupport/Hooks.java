@@ -1,11 +1,19 @@
 package runsupport;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.imageio.ImageIO;
+
 import org.apache.log4j.Logger;
+import org.imgscalr.Scalr;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -53,6 +61,7 @@ public class Hooks{
                     try {
                         scenario.write("Current Page URL is " + driver.getCurrentUrl());
                         byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+                        // screenshot = resizeByteArrayImage(screenshot); // Uncomment to shrink size of report
                         scenario.embed(screenshot, "image/png");
                     } catch (WebDriverException somePlatformsDontSupportScreenshots) {
                         log.error(somePlatformsDontSupportScreenshots.getMessage());
@@ -80,4 +89,19 @@ public class Hooks{
         return isWeb;
     }
     
+    public byte[] resizeByteArrayImage(byte[] imageData) {
+        try (ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+            BufferedImage image = ImageIO.read(bis);
+
+            BufferedImage resizedImage = Scalr.resize(image, Scalr.Method.AUTOMATIC,
+                    Scalr.Mode.AUTOMATIC, 500, Scalr.OP_ANTIALIAS);
+            ImageIO.write(resizedImage, "png", bos);
+            return bos.toByteArray();
+        } catch (IOException e) {
+            log.error("** In resizeByteArrayImage, IOException: " + e.getMessage());
+            return imageData;
+        }
+
+    }
 }
