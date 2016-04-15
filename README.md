@@ -24,13 +24,23 @@ I recommend updating the dependencies in pom.xml to the latest versions in [Mave
 
 This will update the dependency versions in the parent POM.
 
+##Installations##
+
+For Java 1.8 see the Oracle [download](http://www.oracle.com/technetwork/java/javase/downloads/index.html) page.  Be sure to install the **JDK**, *not* Java SE.
+
+For Eclipse see the Eclipse [download](http://www.eclipse.org/downloads/) page. Recommendation is to install **Eclipse IDE for Java Developers**.
+
+See the Caveats section for Google chromedriver installation (not required).
+
+Maven dependencies are installed via the pom.xml file. This is discussed next.
+
 ##Eclipse##
 
-If using Eclipse, make sure that the Maven [M2e](http://www.eclipse.org/m2e/) plugin is installed.  Then "Import > Maven > Existing project into workspace..." and select your pom.xml.
+The Eclipse IDE is recommended.  Make sure that the Maven [M2e](http://www.eclipse.org/m2e/) plugin is installed.  Then "Import > Maven > Existing project into workspace..." and select your pom.xml.
 
 M2e will automatically manage your dependencies and download them as required.
 
-[IntelliJ](https://www.jetbrains.com/idea/) is an alternative to Eclipse.
+[IntelliJ](https://www.jetbrains.com/idea/) is an alternative to Eclipse. Details are not covered here.
 
 ##Hello World##
 
@@ -133,7 +143,7 @@ It wouldn't hurt to click on the JRE tab and make sure that the correct JDK is b
 <ol>
 <li><b>Important</b>.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
 
-<li>To use the <b>chromedriver</b> you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named <b>CHROMEDRIVER</b> which you set to the chromedriver's download location.  Lets say that you downloaded chromedriver.exe to <b>c:\WebDriver\chromedriver.exe</b>.   Then you would set system environment variable 
+<li>To use the <b>chromedriver</b> you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named <b>CHROMEDRIVER</b> which you set to the chromedriver's download location.  Let's say that you down-loaded chromedriver.exe to <b>c:\WebDriver\chromedriver.exe</b>.   Then you would set system environment variable 
 
     CHROMEDRIVER="c:\WebDriver\chromedriver.exe" 
       
@@ -141,12 +151,14 @@ To create an environment variable:
 <ul>
 <li>On windows System > Advanced System Settings > Environment Variables.. > (under System variables) New
 <li>Linux it varies, on Ubuntu Place in file /etc/environment
+<li>This framework requires that you have <b>Java 1.8</b> installed and available.  This framework uses Java functionality that is not available in previous versions.
 </ul>
 
 Edit <b>src/config.properties</b> and set:
 
     browser=chrome
     
+<li>The <b>@api</b> tag tells the cucumber @Before and @After hooks to <i>not</i> instantiate a selenium browser.  <b>@api</b> tags should be applied to every <b>rest-assured</b> scenario.  Failure to do so will unnecessarily open a browser instance during scenario execution, lengthening the test duration.  Execution speed is an important consideration for API level tests.  The cumulative penalty across many API tests can be substantial.
 </ol>
 
 ##Explore##
