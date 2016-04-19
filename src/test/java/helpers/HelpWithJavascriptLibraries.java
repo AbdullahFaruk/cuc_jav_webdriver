@@ -23,10 +23,11 @@ import runsupport.DriverFactory;
  */
 public class HelpWithJavascriptLibraries {
 	/*
-	 *  waitForJSandJQueryToLoad assumes that if a loading spinner was implemented that it
-	 *  is identifiedby class=spinner.  While a good guess, check that your developers identified 
-	 *  the spinner this way.  E.g. they could have used id=spinner instead. Modify this code as 
-	 *  appropriate. This code handles the case where a loading spinner hasn't been implemented at all. 
+	 *  waitForLoadingSpinner assumes that a loading spinner was implemented in a 
+	 *  particular way.  This will not, in general be true for your project. You should 
+	 *  check with your developers to determine how a loading spinner was implemented. 
+	 *  Modify this code as appropriate. This code gracefully handles the case where a  
+	 *  loading spinner hasn't been implemented at all. 
 	 */
 	
 	protected static Logger log;
