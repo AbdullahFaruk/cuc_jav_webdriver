@@ -23,7 +23,7 @@ public class GoComicsDetailPage {
 		
 		ElapsedTime etime = new ElapsedTime();
 		etime.start();
-		new HelpWithJavascriptLibraries().waitForJSandJQueryToLoad(this.driver, 90L);
+		new HelpWithJavascriptLibraries().waitForJSandJQueryToLoad(this.driver, 90);
 		etime.stop();
 		log.info("Elapsed time waiting for 'GoComicsDetail' page to load is " 
 				+ etime.getElapsedTimeSeconds() + " Seconds");
