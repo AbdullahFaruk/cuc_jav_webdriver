@@ -1,7 +1,5 @@
 package helpers;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 
 import org.openqa.selenium.By;
@@ -10,10 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.openqa.selenium.support.ui.Sleeper;
 
-import runsupport.DriverFactory;
 
 /*
  * Manually inspect page source on your webpage as soon as it is loaded and search for 
