@@ -8,9 +8,10 @@ import com.jayway.restassured.specification.RequestSpecification;
 
 import static org.hamcrest.Matchers.*;
 import cucumber.api.java.en.*;  // Given, When, Then
+import org.junit.Assert;
 import runsupport.DriverFactory;
 
-public class RestDemoSteps extends DriverFactory {
+public class RestDemoSteps {
 	
 	private RequestSpecification requestSpec;
 	private Response response;
@@ -42,5 +43,22 @@ public class RestDemoSteps extends DriverFactory {
 			body("empty", is(empty)).and().
 			body("validate", is(validate)).and().
 			statusCode(expectedHttpStatus);
+	}
+	
+	@Given("^I create a request for URL \"([^\"]*)\"$")
+	public void i_create_a_request_for_URL(String url) throws Throwable {
+		requestSpec = RestAssured.with();
+		requestSpec.baseUri(url);
+	    
+	}
+
+	@When("^I send that request$")
+	public void i_send_that_request() throws Throwable {
+	    response = requestSpec.when().get("/weather/today/l/20878:4:US");
+	}
+
+	@Then("^the response status is \"(\\d+)\"$")
+	public void then_the_response_status_is(int expectedStatus) throws Throwable {
+		Assert.assertEquals(expectedStatus, response.getStatusCode());
 	}
 }

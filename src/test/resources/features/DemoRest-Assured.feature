@@ -17,3 +17,9 @@ Scenario: Validate a JSON array
     """
     Then the HTTP status code is "200", object is "object", empty is "false" and validate is "true"
     
+@api
+@weather
+Scenario: Get local weather
+  Given I create a request for URL "https://weather.com"
+  When I send that request
+  Then the response status is "200"
