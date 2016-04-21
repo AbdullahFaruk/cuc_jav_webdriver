@@ -23,3 +23,5 @@ Scenario: Get local weather
   Given I create a request for URL "https://weather.com"
   When I send that request
   Then the response status is "200"
+  And the Content-Type is "text/html; charset=utf-8"
+  And the Content-Encoding is "gzip"

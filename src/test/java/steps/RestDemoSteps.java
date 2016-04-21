@@ -3,6 +3,8 @@ package steps;
 import org.apache.log4j.Logger;
 
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Header;
+import com.jayway.restassured.response.Headers;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
@@ -58,7 +60,18 @@ public class RestDemoSteps {
 	}
 
 	@Then("^the response status is \"(\\d+)\"$")
-	public void then_the_response_status_is(int expectedStatus) throws Throwable {
+	public void the_response_status_is(int expectedStatus) throws Throwable {
 		Assert.assertEquals(expectedStatus, response.getStatusCode());
+		//Headers allHeaders = response.getHeaders();
+	}
+	
+	@Then("^the Content-Type is \"(.+)\"$")
+	public void the_content_type_is(String allowedType) {
+		Assert.assertEquals(allowedType, response.getHeaders().getValue("Content-Type"));
+	}
+	
+	@Then("^the Content-Encoding is \"(.+)\"$")
+	public void content_encoding_is(String encoder){
+		Assert.assertEquals(encoder, response.getHeaders().getValue("Content-Encoding"));
 	}
 }
