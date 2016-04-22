@@ -159,6 +159,7 @@ Edit <b>src/config.properties</b> and set:
     browser=chrome
     
 <li>The <b>@api</b> tag tells the cucumber @Before and @After hooks to <i>not</i> instantiate a selenium browser.  <b>@api</b> tags should be applied to every <b>rest-assured</b> scenario.  Failure to do so will unnecessarily open a browser instance during scenario execution, lengthening the test duration.  Execution speed is an important consideration for API level tests.  The cumulative penalty across many API tests can be substantial.
+<li>Do not mix API and UI step definitions in the same file.  UI step definition files inherit from class DriverFactory.  API step definition files <b>do not</b>.
 </ol>
 
 ##Explore##
