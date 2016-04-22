@@ -20,7 +20,7 @@ Scenario: Validate a JSON array
 @api
 @weather
 Scenario: Get local weather
-  Given I create a request for URL "https://weather.com"
+  Given I create a demo request for URL "https://weather.com"
   When I send that request
   Then the response status is "200"
   And the Content-Type is "text/html; charset=utf-8"

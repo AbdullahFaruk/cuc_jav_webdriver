@@ -19,6 +19,12 @@ public class RestDemoSteps {
 	private Response response;
 	protected static Logger log = Logger.getLogger(RestDemoSteps.class);;
 
+	@Given("^I create a demo request for URL \"(.+)\"$")
+	public void i_create_a_request_for_URL(String url) throws Throwable {
+		requestSpec = RestAssured.with();
+		requestSpec.baseUri(url);
+	}
+	
 	@Given("^I set the JSON validation string to:$")
 	public void i_set_the_JSON_validation_string_to(String aPotentialJSONString) throws Throwable {
 		requestSpec = RestAssured.with();
@@ -45,13 +51,6 @@ public class RestDemoSteps {
 			body("empty", is(empty)).and().
 			body("validate", is(validate)).and().
 			statusCode(expectedHttpStatus);
-	}
-	
-	@Given("^I create a request for URL \"([^\"]*)\"$")
-	public void i_create_a_request_for_URL(String url) throws Throwable {
-		requestSpec = RestAssured.with();
-		requestSpec.baseUri(url);
-	    
 	}
 
 	@When("^I send that request$")
