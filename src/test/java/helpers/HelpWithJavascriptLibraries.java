@@ -91,7 +91,7 @@ public class HelpWithJavascriptLibraries {
 	      "return inProgress;", "0", timeout);
 	}
 	
-    public boolean waitFor(WebDriver driver, String javascriptString, String targetString, int timeout) {
+    public boolean waitFor(WebDriver driver, final String javascriptString, final String targetString, int timeout) {
 	  WebDriverWait wait = new WebDriverWait(driver, timeout, 500L);
 		
       /*
