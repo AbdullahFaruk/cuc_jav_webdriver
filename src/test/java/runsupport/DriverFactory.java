@@ -50,7 +50,7 @@ public class DriverFactory {
 	}
 	
 	public void setImplicitWait(long waitTime) {
-		implicitWaitTimeInSeconds = waitTime;
+		DriverFactory.implicitWaitTimeInSeconds = waitTime;
 	}
 	
 	public long getImplicitWait() {
