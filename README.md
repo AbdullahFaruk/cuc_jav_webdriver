@@ -109,7 +109,7 @@ Further note that STDOUT needed to be specified on --plugin pretty:STDOUT.
 
 Finally note that the **features** keyword was dropped completely. The path specified at the end (without a keyword) tells cucumber-jvm where to find the feature files.
 
-Be warned, if you get any of this wrong then cucumber-jvm gives you cryptic error messages. 
+Be warned, if you get any of this wrong then cucumber-jvm gives you cryptic error messages. The usage is explained [here](https://github.com/cucumber/cucumber-jvm/blob/0aecc4d3e4c15fc34b63f848043deba2c230e35f/core/src/main/resources/cucumber/api/cli/USAGE.txt).
 
 ###More on tags###
 
