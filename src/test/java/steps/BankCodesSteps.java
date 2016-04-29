@@ -77,15 +77,18 @@ public class BankCodesSteps {
 		 assertThat(xmlPath.getInt("Envelope.Body.getBankResponse.details.plz"), equalTo(plz));
 	}
 	
-//	@Then("^name space \"(.+)\" is \"(.+)\"$")
-//	public void name_space_is(String arg1, String arg2) throws Throwable {
-//		String xmlResponseXml = xmlResponse.toString();
-//		ArrayList<NodeImpl> item = with(xmlResponseXml).get("Envelope.Body.findAll {it.@xmlns:ns1 == 'http://thomas-bayer.com/blz/'}");
-//        String aNodeName = item.get(0).name();
-//        String aNodeValue = item.get(0).value();
-//        String aNodeToString = item.get(0).toString();
-//		  System.out.println("Halt!");
-//	}
+	@Then("^name space \"(.+)\" is \"(.+)\"$")
+	public void name_space_is(String arg1, String arg2) throws Throwable {
+		XmlPath xmlPath = new XmlPath(xmlResponse).using(xmlPathConfig().declaredNamespace(arg1, arg2));
+
+        // Then
+        assertThat(xmlPath.getString("Envelope.Body.getBankResponse." + arg1 + ":details." + arg1 + 
+        		":bezeichnung.text()"), equalTo("ABK-Kreditbank"));
+        
+        xmlPath = new XmlPath(xmlResponse);  // No name space so specifying name space in the path yields nothing
+        assertThat(xmlPath.getString("Envelope.Body.getBankResponse." + arg1 + ":details." + arg1 
+        		+ ":bezeichnung.text()"), equalTo(""));
+	}
 
 	public String CreateSoapVersion1_1_EnvelopStart(String nameSpace) {
 		return "<?xml version=\"1.0\" encoding=\"utf-8\"?> \n" +

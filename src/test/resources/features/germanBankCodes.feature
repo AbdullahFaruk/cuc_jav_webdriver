@@ -9,3 +9,4 @@ Scenario: Request a bank using its bank code
   Then Bezeichnung is "ABK-Kreditbank"
   And bic is "ABKBDEB1XXX"
   And ort is "Berlin" and plz is "10789"
+  Then name space "ns1" is "http://thomas-bayer.com/blz/"
