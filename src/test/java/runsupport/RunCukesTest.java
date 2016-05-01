@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 		features = "classpath:features",
 		plugin = {"pretty", "html:target/cucumber-html-reports", "json:target/cucumber.json"},
 		glue = { "classpath:steps", "classpath:runsupport" },
-		tags = {"@search"}
+		tags = {"@api"}
 		)
 public class RunCukesTest{
 	

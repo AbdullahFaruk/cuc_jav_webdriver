@@ -29,8 +29,8 @@ public class AutomationPracticeFormPage {
 			this.driver = driver;
 			this.log = Logger.getLogger(AutomationPracticeFormPage.class);
 					
-			Assert.assertTrue("Page title '" + driver.getTitle() + "' doesn't match expected", 
-					driver.getTitle().equals("TOOLSQA | Demo Form for practicing Selenium Automation"));
+			Assert.assertTrue("Page title '" + driver.getTitle() + "' doesn't match expected ", 
+					driver.getTitle().equals("TOOLSQA | Free QA Test Automation Tools Tutorial | Demo Form for practicing Selenium Automation"));
 			
 			PageFactory.initElements(driver,  this);
 		}

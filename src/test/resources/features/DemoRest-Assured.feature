@@ -1,7 +1,7 @@
 @rest
+@api
 Feature: Demonstrate rest-assured
 
-@api
 Scenario: Validate a JSON array
   Given I set the JSON validation string to:
     """
@@ -17,7 +17,6 @@ Scenario: Validate a JSON array
     """
     Then the HTTP status code is "200", object is "object", empty is "false" and validate is "true"
     
-@api
 @weather
 Scenario: Get local weather
   Given I create a demo request for URL "https://weather.com"

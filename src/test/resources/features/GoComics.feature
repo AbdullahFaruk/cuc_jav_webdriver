@@ -1,4 +1,5 @@
 @hobbes
+@ui
 Feature: Open Calvin and Hobbes
 
 Scenario: Display today's Calvin and Hobbes comic strip

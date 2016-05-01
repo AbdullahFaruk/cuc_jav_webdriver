@@ -1,12 +1,12 @@
 ##About##
 
-**cuc_jav_webdriver** is a template for a [Cucumber-jvm](https://github.com/cucumber/cucumber-jvm), JAVA, [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/) and [JUnit](http://junit.org/) project. 
+**cuc_jav_webdriver** is a template for a [Cucumber-jvm](https://github.com/cucumber/cucumber-jvm), JAVA, [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/) (supports UI testing), [rest-assured](https://github.com/jayway/rest-assured) (supports API testing) and [JUnit](http://junit.org/) project. 
 
-This template implements the [Page Object](http://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) design pattern.  This template also supports REST endpoint testing using the [rest-assured](http://www.jayway.com/2013/11/29/rest-assured-2-0-testing-your-rest-services-is-easier-than-ever/) framework. REST endpoint testing bypasses the browser UI and directly tests the server.
+This template implements the [Selenium Page Object](http://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) design pattern.  This template also supports server endpoint testing using the [rest-assured](http://www.jayway.com/2013/11/29/rest-assured-2-0-testing-your-rest-services-is-easier-than-ever/) framework. Endpoint testing bypasses the browser UI and directly tests the server. Rest-assured supports both JSON (e.g RESTfull) and XML (e.g. SOAP) based protocols.
 
 The purpose of this template is to provide a quick start to new software test automation projects. 
 
-To get started, create a copy of this project in a directory on your machine (e.g. download the zip). The root directory should be a project name of your choosing.
+To get started, create a copy of this project in a directory on your machine (e.g. download the zip or better [fork the repository](http://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/) which allows you to **git pull** updates). The root directory should be a project name of your choosing.
 
 ##Modify pom.xml##
 
@@ -46,16 +46,16 @@ M2e will automatically manage your dependencies and download them as required.
 
 This project contains a Hello World example that searches Google.
 
-To execute the test, using Eclipse, navigate to **src/test/java/runsupport** then right-click on **RunCukesTest.java**.
-In the menu click on **Run As** then select **JUnit Test**. You may need to add the log4j.properties to the Eclipse classpath before running.  Instructions are in the **Caveats** section below.
+To execute the test, using Eclipse, navigate to **src/test/java/runsupport** and edit **RunCukesTest.java** to verify that **@CucumberOptions** specifies **Tags = @search**. Right-click on **RunCukesTest.java**.
+In the menu click on **Run As** then select **JUnit Test**.
 
 The last two Gherkin steps are pending and are left as an exercise.
 
 There is a second demo used to demonstrate the wait for page load support (see below) and the elapsed time services.  To run it replace the **@search** tag in **src/test/java/runsupport/RunCukesTest.java** with **@hobbes** then right-click on **runsupport/RunCukesTest.java** > **Run As** > **JUnit Test**.  
 
-A third demo has been added to show support for the [jayway rest-assured Java DSL](https://github.com/jayway/rest-assured/wiki). Rest-assured provides a simplified way to test [REST](http://rest.elkstein.org/2008/02/what-is-rest.html) endpoints.  To execute the rest-assured demo navigate to **src/test/java/runsupport/RunCukesTest.java**, replace the tag with @rest then right-click on **RunCukesTest.java**. In the menu click on **Run As** then select **JUnit Test**. Tagging scenarios with **@api** causes the scenario @Before hook to bypass Selenium browser initialization.
+A third demo has been added to show support for the [jayway rest-assured Java DSL](https://github.com/jayway/rest-assured/wiki). Rest-assured provides a simplified way to test both [REST](http://rest.elkstein.org/2008/02/what-is-rest.html) compliant and XML based endpoints.  To execute the rest-assured demo navigate to **src/test/java/runsupport/RunCukesTest.java**, replace the tag with **@api** then right-click on **RunCukesTest.java**. In the menu click on **Run As** then select **JUnit Test**. Tagging scenarios with **@api** causes the scenario @Before hook to bypass Selenium browser initialization.
 
-A fourth demo was added to demonstrate how data tables defined in feature files can be converted to list, map and even custom objects that you define. Use the tag **@datatab**. Hat tip to Thomas Sundberg at Think Code AB.
+A fourth demo was added to demonstrate how data tables defined in feature files can be converted to List, Map and even custom objects that you define. Use the tag **@datatab**. Hat tip to Thomas Sundberg at Think Code AB.
 
 ##Advanced Cucumber Reporting##
 
@@ -85,7 +85,12 @@ The JUnit runner (RunCukesTest.java in package runsupport) has the annotation
 
 followed by a bunch of cucumber runtime options (e.g. which tags to execute).  The problem is that annotations are set in stone at compile time.  To change which tags to execute you need to edit the file.  This is time consuming and it confuses git with unnecessary changes.  There is a better way.
 
-In Eclipse you can use the java command-line **-Dcucumber.options** command to completely override the **@CucumberOptions** annotation.  However, the two do not directly translate so some care must be taken.  The @CucumberOptions annotation converts the specified parameters to a format that cucumber-jvm expects.  It is this internal format that you must specify in -Dcucumber.options.  Here is an example:
+In Eclipse you can use the java command-line **-Dcucumber.options** command to completely override the **@CucumberOptions** annotation.  However, the two do not directly translate so some care must be taken.  The @CucumberOptions annotation converts the specified parameters to a format that cucumber-jvm expects.  It is this internal format that you must specify in 
+
+
+    -Dcucumber.options  
+
+Here is an example:
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
@@ -101,7 +106,7 @@ In Eclipse you can use the java command-line **-Dcucumber.options** command to c
 
 The command-line system property version is:
 
-    -Dcucumber.options="--tags @search --monochrome --plugin pretty:STDOUT --plugin html:target/cucumber-html-report --plugin json:target/cucumber.json --glue steps --glue runsupport classpath:features"
+    mvn clean test -Dcucumber.options="--tags @search --monochrome --plugin pretty:STDOUT --plugin html:target/cucumber-html-report --plugin json:target/cucumber.json --glue steps --glue runsupport classpath:features"
 
 Note the double dash characters before keywords.  Also notice that since there are two glue paths that there are two --glue clauses.  Also note that only the package name of the two -glue paths were specified.
 
@@ -131,17 +136,23 @@ To run using **-Dcucumber.options** inside Eclipse use the Maven Build configura
 
     clean test -Dcucumber.options(your options here)
 
-It wouldn't hurt to click on the JRE tab and make sure that the correct JDK is being used. Back on the Main tab, press **Apply**, press **Run**. Remember that **-Dcucumber.options** completely overrides the **@CucumberOptions* line in your RunCukesTest (or whatever you named it) class. Eclipse saves the new run configuration so it is easy to use it again.
+Note that **mvn** is assumed so omit it.  Remember that **-Dcucumber.options** completely overrides the **@CucumberOptions** line in your RunCukesTest (or whatever you named it) class. Eclipse saves the new Maven Build run configuration so it is easy to use it again.
 
 ###To run from a command line (or say in Jenkins)###
 
     cd <your projects root directory, the one containing your pom.xml file>
     mvn clean test -Dcucumber.options(your options here)
 
+##Tag conventions##
+
+Tag **@api** causes API tests to execute.  All API tests should specify this tag in their feature file.  By convention, tag **@ui** causes all Selenium based browser tests to execute.  You should add tag **@ui** to all selenium based tests in their feature file.
+
+To run all tests specify **Tags = @ui,@api** in *@CucumberOptions* or **--tags @ui,@api** in *-Dcucumber.options*.
+
 ##Caveats##
 
 <ol>
-<li><b>Important</b>.  Do the following to add log4j.properties to the Eclipse classpath.  Click on: Run -> Run Configuration -> [classpath tab] -> click on User Entries -> Advanced -> Select Add Folder -> select the location of your log4j.properties (your project root folder /) file and then -> OK -> Run
+<li>The pom.xml places the project root folder in the default classpath.  If you move the **log4j.properties** file you must [add the new location](https://maven.apache.org/surefire/maven-surefire-plugin/examples/configuring-classpath.html) to the default classpath.  
 
 <li>To use the <b>chromedriver</b> you first have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and then create a system environment variable named <b>CHROMEDRIVER</b> which you set to the chromedriver's download location.  Let's say that you down-loaded chromedriver.exe to <b>c:\WebDriver\chromedriver.exe</b>.   Then you would set system environment variable 
 
