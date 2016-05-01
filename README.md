@@ -8,7 +8,43 @@ The purpose of this template is to provide a quick start to new software test au
 
 To get started, create a copy of this project in a directory on your machine (e.g. download the zip or better [fork the repository](http://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/) which allows you to **git pull** updates). The root directory should be a project name of your choosing.
 
-##Modify pom.xml##
+##Table of Contents##
+
+[Modify pom.xml](#modify-pom-xml)
+
+[Use Latest versions](#use-latest-versions)
+
+[Installations](#installations)
+
+[Eclipse](#eclipse)
+
+[Hello World](#hello-world)
+
+[Advanced Cucumber Reporting](#advanced-cucumber-reporting)
+
+[Wait for Page Load](#wait-for-page-load)
+
+[Log4j](#log4j)
+
+[Overriding @CucumberOptions](#overriding-cucumberoptions)
+
+ - [More on tags](#more-on-tags)
+
+ - [Run using the Maven Build configuration](#run-using-the-maven-build-configuration)
+
+ - [To run from a command line or in Jenkins](#to-run-from-a-command-line-or-in-jenkins)
+
+[Tag conventions](#tag-conventions)
+
+[Caveats](#caveats)
+
+[TestNG](#testng)
+
+[Explore](#explore)
+
+[Legal stuff](#legal-stuff)
+
+#Modify pom.xml#
 
 Modify the pom.xml file.  Use [this](https://maven.apache.org/pom.html) as a guide.
 
@@ -38,9 +74,9 @@ Maven dependencies are installed via the pom.xml file. This is discussed next.
 
 The Eclipse IDE is recommended.  Make sure that the Maven [M2e](http://www.eclipse.org/m2e/) plugin is installed.  Then "Import > Maven > Existing project into workspace..." and select your pom.xml.
 
-M2e will automatically manage your dependencies and download them as required.
+M2e will automatically manage the dependencies declared in your pom.xml file and download them from Maven (and other) repositories as required.
 
-[IntelliJ](https://www.jetbrains.com/idea/) is an alternative to Eclipse. Details are not covered here.
+[IntelliJ](https://www.jetbrains.com/idea/) is an alternative to Eclipse. Eclipse is assumed. IntelliJ directions are not covered here.
 
 ##Hello World##
 
@@ -130,7 +166,8 @@ To execute (@tag1 or @tag2) and not @tag3
 
     --tags @tag1,@tag2 --tags ~@tag3
 
-###Running -Dcucumber.options from Eclipse###
+###Run using the Maven Build configuration###
+
 
 To run using **-Dcucumber.options** inside Eclipse use the Maven Build configuration type.  To get a Maven Build configuration click on **Run > Run Configurations...**. On the left pane double-click **Maven Build**. A default Maven Build configuration is created. Give it a good name and on the **Goals** line type 
 
@@ -138,7 +175,7 @@ To run using **-Dcucumber.options** inside Eclipse use the Maven Build configura
 
 Note that **mvn** is assumed so omit it.  Remember that **-Dcucumber.options** completely overrides the **@CucumberOptions** line in your RunCukesTest (or whatever you named it) class. Eclipse saves the new Maven Build run configuration so it is easy to use it again.
 
-###To run from a command line (or say in Jenkins)###
+###To run from a command line or in Jenkins###
 
     cd <your projects root directory, the one containing your pom.xml file>
     mvn clean test -Dcucumber.options(your options here)
@@ -162,20 +199,34 @@ To create an environment variable:
 <ul>
 <li>On windows System > Advanced System Settings > Environment Variables.. > (under System variables) New
 <li>Linux it varies, on Ubuntu Place in file /etc/environment
-<li>This framework requires that you have <b>Java 1.8</b> installed and available.  This framework uses Java functionality that is not available in previous versions.
 </ul>
 
 Edit <b>src/config.properties</b> and set:
 
     browser=chrome
     
+<li>This framework requires that you have <b>Java 1.8</b> installed and available.  This framework uses Java functionality that is not available in previous versions.
 <li>The <b>@api</b> tag tells the cucumber @Before and @After hooks to <i>not</i> instantiate a selenium browser.  <b>@api</b> tags should be applied to every <b>rest-assured</b> scenario.  Failure to do so will unnecessarily open a browser instance during scenario execution, lengthening the test duration.  Execution speed is an important consideration for API level tests.  The cumulative penalty across many API tests can be substantial.
 <li>Do not mix API and UI step definitions in the same file.  UI step definition files inherit from class DriverFactory.  API step definition files <b>do not</b>.
 </ol>
 
+##TestNG##
+
+Cucumber can be configured to use a TestNG test runner instead of the JUnit test runner but the match is not ideal.  Cucumber is *object based* while TestNG is *class based*. 
+ - You need to create a TestNG test runner for each cucumber-jvm feature file
+ - Instead of centralized control of tags, tags have to be specified in each TestNG feature file
+
+TestNG runner advantages over the JUnit runner include the ability to run in parallel and better reports. Reports are mitigated by [Advanced Cucumber Reporting](#advanced-cucumber-reporting).  Jenkins (TeamCity and other Continuous Integration solutions) allow you run build steps in parallel with the next step waiting until all the concurrent steps have finished. Therefore multiple concurrent test build steps can be defined to reduce the total test execution duration.
+
+Because the shortcomings of the JUnit test runner can be mitigated and because of the required compromises in usability this framework does not support using TestNG test runners. 
+
+These other test frameworks explore marrying cucumber with TestNG test runners:
+- [cucumber-testng-webdriver-automatictester](https://github.com/mikejramsey56/cucumber-testng-webdriver-automatictester)
+- [java-calculator-testng](https://github.com/mikejramsey56/java-calculator-testng)
+
 ##Explore##
 
-Read this [eBook](https://www.gitbook.com/book/sukesh15/cucumber-jvm-test-framework-/details) to learn more about cucumber-jvm frameworks.
+Read this [eBook](https://www.gitbook.com/book/sukesh15/cucumber-jvm-test-framework-/details) to learn more about cucumber-jvm frameworks. 
 
 ##Legal stuff##
 
