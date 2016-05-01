@@ -39,10 +39,10 @@ public class ODataSteps {
 	}
 	
 	@When("^I search for available collections I find \"(\\d+)\"$")
-	public void i_search_for_available_collections_i_find(int expectedNumCategories) {
+	public void i_search_for_available_collections_i_find(int expectedNumCollections) {
 		XmlPath xmlPath = new XmlPath(sampleXml);
 		final List<Node> collections = xmlPath.getList("service.workspace.collection", Node.class);
-		assertThat(collections.size(), equalTo(expectedNumCategories));
+		assertThat(collections.size(), equalTo(expectedNumCollections));
 		
 		final List<String> collectionsStr = given(sampleXml).getList(
 				"service.workspace.collection.findAll {it.title.text()}", String.class);
