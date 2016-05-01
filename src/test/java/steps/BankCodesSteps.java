@@ -79,7 +79,14 @@ public class BankCodesSteps {
 	
 	@Then("^name space \"(.+)\" is \"(.+)\"$")
 	public void name_space_is(String arg1, String arg2) throws Throwable {
-		XmlPath xmlPath = new XmlPath(xmlResponse).using(xmlPathConfig().declaredNamespace(arg1, arg2));
+		//Verify URI of namespace
+		XmlPath xmlPath = new XmlPath(xmlResponse).using(xmlPathConfig().namespaceAware(false)); //Need rest-assured 1.9.1
+		String assertString = "soapenv:Envelope.soapenv:Body." + arg1 +":getBankResponse.@xmlns:" + arg1;
+		assertThat(xmlPath.getString(assertString), equalTo(arg2));
+		
+		//Next, verify that rest-assured XML paring respects namespace; more for my own education. This would not
+		//  normally be part of the test.be part of 
+		xmlPath = new XmlPath(xmlResponse).using(xmlPathConfig().declaredNamespace(arg1, arg2));
 
         // Then
         assertThat(xmlPath.getString("Envelope.Body.getBankResponse." + arg1 + ":details." + arg1 + 
